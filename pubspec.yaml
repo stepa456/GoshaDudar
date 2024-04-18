@@ -17,3 +17,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  
+fonts:
+  - family: GoblinOne
+    fonts:
+      - asset: fonts/GoblinOne-Regular.ttf
