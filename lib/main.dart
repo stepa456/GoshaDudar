@@ -1,40 +1,80 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(
+      home: UserPanel(),
+    ));
 
-class MyApp extends StatelessWidget {
+class UserPanel extends StatefulWidget {
+  const UserPanel({Key? key}) : super(key: key);
+  @override
+  State<UserPanel> createState() => _UserPanelState();
+}
+
+class _UserPanelState extends State<UserPanel> {
+  int _count = 0;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.deepOrangeAccent),
-      home: Scaffold(
+    return Scaffold(
+        backgroundColor: Colors.redAccent,
         appBar: AppBar(
-          title: Text('Hello world!'),
+          title: Text('Панель пользователя'),
           centerTitle: true,
+          backgroundColor: Colors.black,
         ),
-        body: Container(
-          color: Colors.deepOrangeAccent,
-          child: Text('Hello world!'),
-          margin: EdgeInsets.fromLTRB(10.0, 15, 20.0, 30.0),
-          padding: EdgeInsets.all(20.5),
-        ),
-        //Image(
-        //image: AssetImage('assets/child.jpg'),)
-        //image: NetworkImage('https://img.freepik.com/free-photo/the-adorable-illustration-of-kittens-playing-in-the-forest-generative-ai_260559-483.jpg?size=338&ext=jpg&ga=GA1.1.1413502914.1713312000&semt=ais'),
-
-        //TextButton.icon(label: Text('Нажми'),onPressed: () {},icon: Icon(Icons.adb_sharp),)
-        //RaisedButton.icon(onPressed: () {}, icon: Icon(Icons.adb_sharp), label: Text('Settins')),
-        //RaisedButton(onPressed: () {}, child: Text('Hello world')),
-        //FlatButton(onPressed: () {},child: Text('Нажми на кнопку!'),color: Colors.deepOrangeAccent),
-        //Icon(Icons.amp_stories_outlined, size: 45, color: Colors.amber),
+        body: SafeArea(
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 30),
+              ),
+              Text(
+                'John Doe',
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.white,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+              ),
+              CircleAvatar(
+                backgroundImage: AssetImage('assets/child.jpg'),
+                radius: 50,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+              ),
+              Row(
+                children: [
+                  Icon(Icons.mail_outline, size: 25),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                  ),
+                  Text(
+                    'admin@gmail.com',
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+              ),
+              Text(
+                'Count: $_count',
+                style: TextStyle(color: Colors.white),
+              )
+            ],
+          )
+        ])),
         floatingActionButton: FloatingActionButton(
-          child: Text('Нажми'),
-          onPressed: () {
-            print('Нажми');
-          },
-          backgroundColor: Colors.deepOrangeAccent,
-        ),
-      ),
-    );
+            child: Icon(Icons.ac_unit_rounded),
+            backgroundColor: Colors.amber,
+            onPressed: () {
+              setState(() {
+                _count++;
+              });
+            }));
   }
 }
